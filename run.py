@@ -53,7 +53,7 @@ def setupRos2Java(workspacePath: pathlib.Path):
 
 def build(workspacePath: pathlib.Path):
     print('start building packages')
-    command = f'docker run -it --rm --net=host -v {workspacePath}:/home/user/workspace ros2java-android-build /home/user/build-android.sh'
+    command = f'docker run -e http_proxy=172.17.0.1:10809 -e https_proxy=172.17.0.1:10809 -it --rm --net=host -v {workspacePath}:/home/user/workspace ros2java-android-build /home/user/build-android.sh'
     subprocess.run(command, shell=True)
 
 def output(workspacePath: pathlib.Path, soOutPath: pathlib.Path, jarOutPath: pathlib.Path):
